@@ -54,7 +54,7 @@ public class CarService {
          *   If it does not exist, throw a CarNotFoundException
          *   Remove the below code as part of your implementation.
          */
-        
+
         Optional<Car> carOptional = carRepository.findById(id);
         if (!carOptional.isPresent()) {
             throw new CarNotFoundException("Car ID not found.");
@@ -100,6 +100,7 @@ public class CarService {
                     .map(carToBeUpdated -> {
                         carToBeUpdated.setDetails(car.getDetails());
                         carToBeUpdated.setLocation(car.getLocation());
+                        carToBeUpdated.setCondition(car.getCondition());
                         return carRepository.save(carToBeUpdated);
                     }).orElseThrow(CarNotFoundException::new);
         }
